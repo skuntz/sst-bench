@@ -161,6 +161,7 @@ void GridNode::handleEvent(SST::Event *ev){
   // [2:(r-1)] random data
   // Check the incoming data
 
+
   unsigned send_port = data[0];
   assert(send_port < (portname.size()/2)); // TODO unrestrict bidirectional links
   unsigned rcv_port = neighbor(send_port);
@@ -186,7 +187,10 @@ void GridNode::handleEvent(SST::Event *ev){
           getName().c_str(), i, d, data[i]);
     }
   }
-  
+
+  cs_rta.execute(); // This works - prints the current cyclet
+  //i_rta.execute(); // SKK this should break to interactive console
+
   delete ev;
 }
 

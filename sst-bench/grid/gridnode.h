@@ -36,6 +36,10 @@
 #include <sst/core/rng/rng.h>
 #include <sst/core/rng/mersenne.h>
 
+//SKK
+#include <sst/core/realtimeAction.h>
+#include <sst/core/realtime.h>
+
 namespace SST::GridNode{
 
 // -------------------------------------------------------
@@ -182,6 +186,11 @@ private:
   std::vector<unsigned> state;                    ///< internal data structure
   std::map< std::string, SST::RNG::Random* > rng; ///< per port mersenne twister objects
   SST::RNG::Random* localRNG = 0;                 ///< component local random number generator
+
+  // SKK - support for realtime action to break into interactive console for debug
+  SST::CoreStatusRealTimeAction cs_rta;  // Compiles and executes correctly, so do all other actions except checkpoing and interactive
+  //SST::InteractiveRealTimeAction i_rta;  // Causes a compiler error: InteractiveRealTimeAction is not a type
+  
 
   // -- private methods
   /// event handler
