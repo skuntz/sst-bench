@@ -146,6 +146,7 @@ void GridNode::serialize_order(SST::Core::Serialization::serializer& ser){
   SST_SER(demoBug)
   SST_SER(dataMask)
   SST_SER(dataMax)
+  SST_SER(breakEnable)
 }
 
 void GridNode::handleEvent(SST::Event *ev){
@@ -188,8 +189,12 @@ void GridNode::handleEvent(SST::Event *ev){
     }
   }
 
-  cs_rta.execute(); // This works - prints the current cyclet
-  //i_rta.execute(); // SKK this should break to interactive console
+  // Interactive Console Debug Example
+  // breakEnable can be set from interactive console to enable/disable as long it is serialized 
+  // Could also add triggers etc to decide when to break
+  if (breakEnable == true) {
+    interactiveRTA.execute(); // Causes break to interactive console
+  }
 
   delete ev;
 }

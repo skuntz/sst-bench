@@ -187,10 +187,10 @@ private:
   std::map< std::string, SST::RNG::Random* > rng; ///< per port mersenne twister objects
   SST::RNG::Random* localRNG = 0;                 ///< component local random number generator
 
-  // SKK - support for realtime action to break into interactive console for debug
-  SST::CoreStatusRealTimeAction cs_rta;  // Compiles and executes correctly, so do all other actions except checkpoing and interactive
-  //SST::InteractiveRealTimeAction i_rta;  // Causes a compiler error: InteractiveRealTimeAction is not a type
-  
+  // Interactive Console Debug Example
+  // Support for realtime action to break into interactive console for debug
+  SST::InteractiveRealTimeAction interactiveRTA;
+  volatile bool breakEnable = true;               // Breaks is enabled initially. Can be modified from console
 
   // -- private methods
   /// event handler
